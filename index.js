@@ -3,7 +3,7 @@
 	/*global angular, Blob, URL */
 	
 	angular.module('angular.img', [
-	]).directive('httpSrc', function ($http) {
+	]).directive('httpSrc', ['$http', function ($http) {
 		return {
 			link: function ($scope, elem, attrs) {
 				function revokeObjectURL() {
@@ -32,5 +32,5 @@
 				});
 			}
 		};
-	});
+	}]);
 }());
