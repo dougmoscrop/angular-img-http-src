@@ -23,7 +23,9 @@
 				attrs.$observe('httpSrc', function (url) {
 					revokeObjectURL();
 
-					if (url) {
+					if(url && url.indexOf('data:') === 0) {
+						$scope.objectURL = url;
+					} else if(url) {
 						$http.get(url, { responseType: 'arraybuffer' })
 							.then(function (response) {
 								var blob = new Blob(
@@ -31,9 +33,6 @@
 									{ type: response.headers('Content-Type') }
 								);
 								$scope.objectURL = URL.createObjectURL(blob);
-							}, function(){
-								//if url cannot be requested, just serve it up as it may be a data url
-								$scope.objectURL = url;
 							});
 					}
 				});
