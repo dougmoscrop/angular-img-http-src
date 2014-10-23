@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 	/*global angular, Blob, URL */
-	
+
 	angular.module('angular.img', [
 	]).directive('httpSrc', ['$http', function ($http) {
 		return {
@@ -23,11 +23,17 @@
 				attrs.$observe('httpSrc', function (url) {
 					revokeObjectURL();
 
-					if (url) {
-						$http.get(url, { responseType: 'arraybuffer' }).then(function (response) {
-							var blob = new Blob([ response.data ], { type: response.headers('Content-Type') });
-							$scope.objectURL = URL.createObjectURL(blob);
-						});
+					if(url && url.indexOf('data:') === 0) {
+						$scope.objectURL = url;
+					} else if(url) {
+						$http.get(url, { responseType: 'arraybuffer' })
+							.then(function (response) {
+								var blob = new Blob(
+									[ response.data ], 
+									{ type: response.headers('Content-Type') }
+								);
+								$scope.objectURL = URL.createObjectURL(blob);
+							});
 					}
 				});
 			}
