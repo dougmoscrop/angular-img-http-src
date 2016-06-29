@@ -1,6 +1,6 @@
 {
   "name": "angular-img-http-src",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "authors": [
     "Doug Moscrop <doug.moscrop@gmail.com>"
   ],
@@ -24,6 +24,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.2.x"
+    "angular": "1.x"
   }
 }
