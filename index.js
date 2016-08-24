@@ -7,7 +7,9 @@
 		return {
 			// do not share scope with sibling img tags and parent
 			// (prevent show same images on img tag)
-			scope: {},
+			scope: {
+				httpSrc: '@'
+			},
 			link: function ($scope, elem, attrs) {
 				function revokeObjectURL() {
 					if ($scope.objectURL) {
