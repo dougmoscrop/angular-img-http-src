@@ -29,7 +29,12 @@
 					if(url && url.indexOf('data:') === 0) {
 						$scope.objectURL = url;
 					} else if(url) {
-						$http.get(url, { responseType: 'arraybuffer' })
+                        $http.get(url, {
+                            responseType: 'arraybuffer',
+                            headers: {
+                                'accept': 'image/webp,image/*,*/*;q=0.8'
+                            }
+                        })
 							.then(function (response) {
 								var blob = new Blob(
 									[ response.data ], 
