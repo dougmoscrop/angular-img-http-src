@@ -33,7 +33,7 @@
               $scope.objectURL = url;
             } else if (url) {
               $http.get(url, {
-                  responseType: 'arraybuffer'
+                  responseType: 'arraybuffer',
                   headers: {
                     'accept': 'image/webp,image/*,*/*;q=0.8'
                   }
