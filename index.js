@@ -31,6 +31,7 @@
 					} else if(url) {
                         $http.get(url, {
                             responseType: 'arraybuffer',
+                            cache: true,
                             headers: {
                                 'accept': 'image/webp,image/*,*/*;q=0.8'
                             }
