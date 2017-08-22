@@ -3,7 +3,7 @@
 	/*global angular, Blob, URL */
 
 	angular.module('angular.img', [
-	]).directive('httpSrc', ['$http', '$cacheFactory', function ($http, $cacheFactory) {
+	]).directive('httpSrc', ['$http', function ($http) {
 		return {
 			// do not share scope with sibling img tags and parent
 			// (prevent show same images on img tag)
@@ -29,10 +29,9 @@
 					if(url && url.indexOf('data:') === 0) {
 						$scope.objectURL = url;
 					} else if(url) {
-						var imageCache = $cacheFactory.get('mytoyota-image-cache');  
                         $http.get(url, {
                             responseType: 'arraybuffer',
-                            cache: imageCache,
+                            cache: true,
                             headers: {
                                 'accept': 'image/webp,image/*,*/*;q=0.8'
                             }
